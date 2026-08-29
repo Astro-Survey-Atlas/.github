@@ -14,15 +14,15 @@ In modern observational astronomy, researchers and enthusiasts are often overwhe
 
 ### 1. 🔍 What public data can we get? (Public Data Discovery)
 With countless observatories (SDSS, Gaia, JWST, Euclid, DESI, Pan-STARRS, etc.) releasing petabytes of sky imaging and catalogs, finding what exists for your target coordinates can be extremely tedious.
-*   **Our Solution:** We create high-performance interactive sky maps and survey footprint tools that visually overlay the coverage, bandpasses, and metadata of all major public surveys in one place.
+*   **Our Solution:** We scan and index the footprints of major public sky surveys. By identifying overlapping sky regions using hierarchical spatial indexing (such as HEALPix/MOC), we make it easy to see where different surveys intersect and what multi-wavelength data is actually available.
 
 ### 2. 📂 What data do we (the users) have? (User Data Integration & Management)
 Astronomers often work with their own localized catalogs, raw FITS images, or proprietary observatory footprints, but lack a simple way to catalog and visualize them.
 *   **Our Solution:** We provide lightweight tools to generate spatial footprints and local indexes for your own datasets, allowing you to seamlessly overlay and visualize your private observations alongside public sky surveys.
 
-### 3. ⚡ How do we obtain the specific portions of data we need? (Targeted Retrieval & Subsetting)
+### 3. ⚡ How do we obtain the specific portions of data we need? (Targeted Retrieval & File Resolution)
 Downloading whole terabyte- or petabyte-scale catalogs just to analyze a small patch of the sky is incredibly inefficient.
-*   **Our Solution:** We build smart spatial-querying micro-APIs, subsetting engines, and download managers that allow you to crop, slice, and retrieve *only* the precise coordinates, celestial tiles, or catalog entries you need.
+*   **Our Solution:** Instead of bulk downloading entire datasets, we filter target sky areas down to overlapping HEALPix regions, and then trace those HEALPix indices back to the exact files (e.g., FITS files or catalog chunks) that cover them. This "footprint -> HEALPix -> target files" mapping allows users to download only the files essential to their research, significantly reducing download volume and complexity.
 
 ---
 
