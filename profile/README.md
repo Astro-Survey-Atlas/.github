@@ -8,27 +8,34 @@ Our mission is to bridge the gap between complex astronomical datasets and intui
 
 ---
 
-## 🎯 Our Vision
+## 🎯 Core Problems We Solve
 
-In the era of Big Data astronomy (with observatories like Vera C. Rubin, JWST, Euclid, and Gaia releasing petabytes of data), finding, visualizing, and cross-matching survey footprints can be challenging. We are building a modular ecosystem of open-source tools to:
+In modern observational astronomy, researchers and enthusiasts are often overwhelmed by massive datasets from various sky surveys. We build tools that directly address the three fundamental questions of astronomical data workflows:
 
-*   **🌌 Visualize the Sky:** High-performance canvas and WebGL-based celestial sphere rendering.
-*   **🗺️ Overlay Survey Footprints:** Interactive mapping of observational coverage from major surveys (SDSS, DESI, HST, Pan-STARRS, etc.).
-*   **⚡ Simplify Data Access:** Streamlined interfaces and APIs for querying stellar catalogs and sky tiles.
-*   **🎓 Empower Education:** Creating interactive, web-based tools that let anyone explore the universe from their browser.
+### 1. 🔍 What public data can we get? (Public Data Discovery)
+With countless observatories (SDSS, Gaia, JWST, Euclid, DESI, Pan-STARRS, etc.) releasing petabytes of sky imaging and catalogs, finding what exists for your target coordinates can be extremely tedious.
+*   **Our Solution:** We create high-performance interactive sky maps and survey footprint tools that visually overlay the coverage, bandpasses, and metadata of all major public surveys in one place.
+
+### 2. 📂 What data do we (the users) have? (User Data Integration & Management)
+Astronomers often work with their own localized catalogs, raw FITS images, or proprietary observatory footprints, but lack a simple way to catalog and visualize them.
+*   **Our Solution:** We provide lightweight tools to generate spatial footprints and local indexes for your own datasets, allowing you to seamlessly overlay and visualize your private observations alongside public sky surveys.
+
+### 3. ⚡ How do we obtain the specific portions of data we need? (Targeted Retrieval & Subsetting)
+Downloading whole terabyte- or petabyte-scale catalogs just to analyze a small patch of the sky is incredibly inefficient.
+*   **Our Solution:** We build smart spatial-querying micro-APIs, subsetting engines, and download managers that allow you to crop, slice, and retrieve *only* the precise coordinates, celestial tiles, or catalog entries you need.
 
 ---
 
 ## 🚀 Key Ecosystem & Projects
 
-Here is a glimpse of what we are working on (or planning to build!):
+Here is our targeted suite of projects designed to solve these three pillars:
 
-| Project | Description | Tech Stack | Status |
-| :--- | :--- | :--- | :--- |
-| **`astro-atlas-core`** | High-performance coordinate transformation and projection library. | Rust / WebAssembly | 🏗️ In Development |
-| **`sky-footprint-mapper`** | Web tool to overlay and compare observational coverage from various telescopes. | React / TypeScript / Deck.gl | 🗺️ Active |
-| **`catalog-crossmatch`** | Fast spatial indexing and cross-matching of astronomical sources. | Python / Rust | ⚡ Planning |
-| **`cosmos-explorer-ui`** | An interactive, beautiful web interface for stargazing and dataset exploration. | Next.js / TailwindCSS / Three.js | 🎨 Design Phase |
+| Project | Solves Problem | Description | Tech Stack | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **`sky-footprint-mapper`** | **1 & 2** | Web tool to overlay major public survey coverages and visualize custom user footprints. | React / Deck.gl / MapLibre | 🗺️ Active |
+| **`astro-atlas-core`** | **2 & 3** | Core library for fast coordinate transformations, HEALPix/MOC indexing, and local file footprinting. | Rust / WebAssembly | 🏗️ In Development |
+| **`astro-data-fetcher`** | **3** | Lightweight CLI tool & client to crop, subset, and fetch target astronomical data without massive downloads. | Python / Rust | ⚡ Planning |
+| **`cosmos-explorer-ui`** | **Unified** | A beautiful, integrated web interface to discover public surveys, explore local files, and fetch slices. | Next.js / Three.js / Tailwind | 🎨 Design Phase |
 
 ---
 
