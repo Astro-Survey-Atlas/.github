@@ -1,68 +1,47 @@
-# Astro-Survey-Atlas 🌌🔭
+# Astro-Survey-Atlas
 
 [English](./README.md) | **简体中文**
 
-欢迎来到 **Astro-Survey-Atlas** 开源组织！我们是一个致力于构建下一代、高性能、且极具视觉冲击力的开源工具集体，专注于探索天文巡天数据、深空星表（Catalogs）以及交互式星图（Celestial Atlases）。
+**Play With Your Own Astro Data.**
 
-我们的使命是消除复杂天文观测数据与直观、研究级可视化之间的壁垒——让天文学家、教育工作者 and 天文爱好者都能更轻松地探索宇宙。
+Astro-Survey-Atlas 是一套小而完整的开源工具：巡天覆盖、你自己的观测数据、以及 HEALPix/MOC。目标是看清某一片天区有什么，并且只取覆盖它的那些文件。
 
----
-
-## 🎯 我们解决的核心问题
-
-在现代观测天文学中，研究人员和天文爱好者常常被来自各大天区巡天计划的浩瀚数据所淹没。我们构建的工具旨在直接解决天文数据工作流中的三个根本问题：
-
-### 1. 🔍 我们能获取哪些公开数据？（公开数据检索与发现）
-伴随着无数天文台和卫星项目（如 SDSS, Gaia, JWST, Euclid, DESI, Pan-STARRS 等）释放出 PB 级别的星空图像和星表，要找出在目标坐标处到底存在哪些观测数据，往往是一项极其繁琐的工程。
-*   **我们的解决方案：** 我们系统性地扫描并整合各大公开巡天项目的覆盖范围（Footprints），通过空间分级索引（如 HEALPix/MOC）快速筛选出不同巡天在天球上重合覆盖的区域，让用户一目了然地知道在哪些天区存在可供交叉研究的多波段数据。
-
-### 2. 📂 我们（用户）有哪些数据？（用户私有数据的管理与融合）
-天文学家经常需要处理自己本地的星表、原始的 FITS 图像或特定望远镜的观测范围，但往往缺乏一种简单的方式来对这些私有数据进行编目和可视化。
-*   **我们的解决方案：** 我们提供轻量化的工具，用于为你自己的数据集生成空间覆盖范围和本地索引，使你能够无缝地将私有观测数据与公开巡天图像叠加在一起进行对比和可视化。
-
-### 3. ⚡ 需要的部分数据如何获取？（按需精准检索与关联文件解析）
-仅为了分析一小片天区而下载整个数 TB 甚至数 PB 级别的完整星表或图像库，是极其低效且浪费资源的。
-*   **我们的解决方案：** 针对重合的天区范围，我们先粗筛出重合覆盖的 HEALPix 区域，再由这些 HEALPix 索引反推出在此空间范围内所涉及的具体数据文件（如 FITS 文件或星表切片）。通过这种“天区范围 -> 重合 HEALPix -> 具体关联文件”的映射机制，用户只需下载极少数的目标文件，从而大幅度降低数据下载的体量与难度。
+联系：[aaron@72602.space](mailto:aaron@72602.space)
 
 ---
 
-## 🚀 核心生态与规划项目
+## 我们在解决什么
 
-以下是针对解决这三大核心痛点而规划的项目矩阵：
+### 1. 这片天区有哪些公开数据？
+各巡天（CSST、SkyMapper、2MASS 等）的覆盖会重叠。我们用 HEALPix/MOC 给 footprint 建索引，让交叉覆盖一眼能看出来。
 
-| 项目名称 | 解决核心问题 | 描述说明 | 技术栈 | 当前状态 |
-| :--- | :--- | :--- | :--- | :--- |
-| **`sky-footprint-mapper`** | **问题 1 & 2** | 用于在网页上叠层展示主流公开巡天范围、并可视化用户自定义本地覆盖范围的工具。 | React / Deck.gl / MapLibre | 🗺️ 活跃开发 |
-| **`astro-atlas-core`** | **问题 2 & 3** | 提供快速天球坐标转换、HEALPix/MOC 空间索引以及本地文件 Footprint 生成的核心库。 | Rust / WebAssembly | 🏗️ 研发中 |
-| **`astro-data-fetcher`** | **问题 3** | 轻量级 CLI 工具和客户端，用于根据 HEALPix 反向关联并拉取目标天区相关文件，避免海量下载。 | Python / Rust | ⚡ 规划中 |
-| **`cosmos-explorer-ui`** | **集成方案** | 统一且精美的网页界面，集公开数据发现、本地文件解析、以及天区数据切片获取于一体。 | Next.js / Three.js / Tailwind | 🎨 设计阶段 |
+### 2. 你自己已经有哪些数据？
+本地 FITS、星表、望远镜覆盖不该和公开巡天各管各的。Workspace 负责把它们叠在一起。
 
----
-
-## 🤝 欢迎加入与贡献！
-
-我们坚信，星空属于每一个人，开源科学也是如此！无论你是专业的天体物理学者、软件工程师、前端/UI设计师，还是对宇宙充满好奇的业余天文爱好者，这里都有属于你的位置。
-
-### 你可以如何参与贡献：
-1.  **💻 代码与设计：** 参与核心仓库开发，优化空间查询性能，或为星图设计更优美的视觉呈现。
-2.  **📝 文档与翻译：** 协助编写使用手册、科普教程，或帮助我们将专业天文术语本地化。
-3.  **🧪 科学与数据：** 为我们推荐或提供新的巡天覆盖区域数据、天体星表或科研用例。
-4.  **💬 反馈与创意：** 开启讨论（Discussions）、提交 Bug 报告，或与大家分享你的天文探索项目。
-
-欢迎查阅我们的 **[贡献指南 (Contribution Guidelines)](CONTRIBUTING.md)** *(即将推出)* 开启你的第一步，或者直接在活跃仓库中寻找带有 `good first issue` 标签的任务！
+### 3. 怎样只拿需要的文件？
+不要为了一小块天区去下整个巡天。先把天区落到 HEALPix 格子，再反查覆盖这些格子的具体文件。
 
 ---
 
-## 💬 建立联系
+## 项目
 
-加入我们的社区，获取最新动态，提问或分享你的绝妙创意！
+下面这些才是现在的公开仓库。没有 `sky-footprint-mapper`、`astro-atlas-core`、`astro-data-fetcher`、`cosmos-explorer-ui`。
 
-*   **GitHub Discussions：** 在我们的 [讨论区](https://github.com/orgs/Astro-Survey-Atlas/discussions) 畅所欲言！
-*   **Discord 频道：** 与开发者 and 天文学家实时畅聊 *(链接即将公布)*。
-*   **反馈与建议：** 遇到问题或有功能需求？请在相关项目的 Repository 下直接提交 Issue。
+| 项目 | 职责 | 技术栈 |
+| --- | --- | --- |
+| [**Assets**](https://github.com/Astro-Survey-Atlas/Assets) | 公开巡天目录、覆盖图、MOC、Resource Package v3。 | TypeScript |
+| [**Workspace**](https://github.com/Astro-Survey-Atlas/Workspace) | 个人天文数据工作区：Aladin / MCP，用来叠你自己的数据。 | TypeScript |
+| [**Warehouse**](https://github.com/Astro-Survey-Atlas/Warehouse) | Kubernetes Operator：扫描本地 / S3 / OSS 天文文件，抽出天区覆盖，发布 `CoverageLayer` 索引。不代理、不裁科学数据本身。 | Helm / Kubernetes |
+| [**MOC-Core-SDK**](https://github.com/Astro-Survey-Atlas/MOC-Core-SDK) | 共享的离线 HEALPix/MOC 内核（`astro-survey-moc-core`）：ICRS/NESTED 像元、IVOA FITS MOC、Resource Package v3。Assets、Workspace、Warehouse 都用它。 | Python |
+
+链路：**Assets**（公开目录）→ **Workspace**（你的数据）→ **Warehouse**（扫描 / 索引）→ **MOC-Core-SDK**（几何内核）。
 
 ---
 
-> "Somewhere, something incredible is waiting to be known." —— *卡尔·萨根 (Carl Sagan)*
+## 参与
 
-感谢你关注 Astro-Survey-Atlas。让我们一起绘制宇宙的宏伟蓝图！🚀✨
+Issue 请开在对应仓库。Assets、Warehouse、MOC-Core-SDK 使用 Apache-2.0。
+
+---
+
+> "Somewhere, something incredible is waiting to be known." —— 卡尔·萨根

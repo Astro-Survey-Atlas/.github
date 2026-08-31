@@ -20,4 +20,4 @@
 
 ---
 
-© 2026 Astro-Survey-Atlas. 基于 MIT 协议开源。
+© 2026 Astro-Survey-Atlas.

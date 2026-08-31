@@ -19,4 +19,4 @@ This repository contains the organization-wide configuration, templates, and pro
 
 ---
 
-© 2026 Astro-Survey-Atlas. Open-source under the MIT License.
+© 2026 Astro-Survey-Atlas.
